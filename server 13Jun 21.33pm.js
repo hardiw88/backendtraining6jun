@@ -11,7 +11,7 @@ const crypto = require("crypto")
 const cookieParser = require("cookie-parser")
 
 // =============================
-// DATABASE INITIALIZATION WITH FS
+// DATABASE INITIALIZATION WITH FSs
 // =============================
 const fs = require("fs")
 // const { parse } = require("path")
