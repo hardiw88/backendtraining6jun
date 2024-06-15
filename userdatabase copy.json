@@ -1,0 +1,55 @@
+[
+  {
+    "firstname": "David",
+    "lastname": "Raya",
+    "age": 28,
+    "email": "draya@arsenal.com",
+    "username": "dayar",
+    "password": "222222"
+  },
+  {
+    "id": "18",
+    "firstname": "Takehiro",
+    "lastname": "Tomiyasu",
+    "age": "26",
+    "email": "take@arsenal.com",
+    "username": "bwhite",
+    "password": "222222"
+  },
+  {
+    "id": "6",
+    "firstname": "thomas",
+    "lastname": "partey",
+    "age": "28",
+    "email": "tpartey@arsenal.com",
+    "username": "tpartey",
+    "password": "222222"
+  },
+  {
+    "id": "8",
+    "firstname": "Martin",
+    "lastname": "Oodegard",
+    "age": 25,
+    "email": "moodegard@arsenal.com",
+    "username": "moodegard",
+    "password": "asdadas#asdad"
+  },
+  {
+    "id": "10",
+    "firstname": "Emile",
+    "lastname": "Smith Rowee",
+    "age": 23,
+    "email": "esrowee@arsenal.com",
+    "username": "esrowee",
+    "password": "asdad22w2wsad"
+  },
+  {
+    "id": "11",
+    "firstname": "Gabriel",
+    "lastname": "Martinellis",
+    "age": 27,
+    "email": "gmartin@arsenal.com",
+    "username": "gmartin",
+    "password": "asdada2287e@"
+  }
+]
