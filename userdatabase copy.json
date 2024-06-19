@@ -5,25 +5,28 @@
     "age": 28,
     "email": "draya@arsenal.com",
     "username": "dayar",
-    "password": "222222"
+    "password": "222222",
+    "UID": "1a302f83-268e-4a1b-9e41-d89f004af428"
   },
   {
     "id": "18",
-    "firstname": "Takehiro",
-    "lastname": "Tomiyasu",
-    "age": "26",
+    "firstname": "Benz",
+    "lastname": "White",
+    "age": "25",
     "email": "take@arsenal.com",
     "username": "bwhite",
-    "password": "222222"
+    "password": "222222",
+    "UID": "90dc2c73-9fd9-4431-b74e-a057352584e4"
   },
   {
     "id": "6",
     "firstname": "thomas",
     "lastname": "partey",
-    "age": "28",
+    "age": "aa",
     "email": "tpartey@arsenal.com",
     "username": "tpartey",
-    "password": "222222"
+    "password": "222222",
+    "UID": "a4164874-d96c-45ba-981b-cdc232030006"
   },
   {
     "id": "8",
@@ -32,7 +35,8 @@
     "age": 25,
     "email": "moodegard@arsenal.com",
     "username": "moodegard",
-    "password": "asdadas#asdad"
+    "password": "asdadas#asdad",
+    "UID": "2defd2b7-e027-4714-a1dc-df827209e150"
   },
   {
     "id": "10",
@@ -41,7 +45,8 @@
     "age": 23,
     "email": "esrowee@arsenal.com",
     "username": "esrowee",
-    "password": "asdad22w2wsad"
+    "password": "asdad22w2wsad",
+    "UID": "75ab9c0e-818e-4cdb-8c8b-03708e12889c"
   },
   {
     "id": "11",
@@ -50,6 +55,7 @@
     "age": 27,
     "email": "gmartin@arsenal.com",
     "username": "gmartin",
-    "password": "asdada2287e@"
+    "password": "asdada2287e@",
+    "UID": "00e8d391-4f3b-4977-8052-4f54e5145ee7"
   }
 ]

@@ -9,6 +9,31 @@ const jwt = require("jsonwebtoken")
 const cors = require("cors")
 const crypto = require("crypto")
 const cookieParser = require("cookie-parser")
+const bcrypt = require("bcrypt")
+const saltRounds = 10
+
+// =============================
+// SETUP MONGOOSE
+// =============================
+const mongoose = require("mongoose")
+const dbURI = process.env.MONGODB_URI
+const Product = require("./Models/ProductModels")
+const { MongoClient, ServerApiVersion } = require("mongodb")
+
+const client = new MongoClient(dbURI, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+})
+
+// mongoose.connect(process.env.MONGODB_URI,)
+
+// const db = mongoose.connection
+//
+// db.once("open", () => console.log("Connected to DB"))
+// db.on("error", (err) => console.log(err))
 
 // =============================
 // DATABASE INITIALIZATION WITH FS
@@ -61,9 +86,64 @@ function generateUID() {
   fs.writeFileSync(pathToUserDatabase, JSON.stringify(tempUserDataArray, null, 2))
 }
 
+async function hashPassword() {
+  for (const user of tempUserDataArray) {
+    if (!user.password.includes(`2b$`)) {
+      user.password = await bcrypt.hash(user.password, saltRounds)
+      return fs.writeFileSync(pathToUserDatabase, JSON.stringify(tempUserDataArray, null, 2))
+    }
+  }
+  return
+}
+//
+// setInterval(() => {
+//   hashPassword()
+//   console.log("HASHED")
+// }, 5000)
+
 // generateUID()
 
-app.post("/signin", (req, res) => {
+client
+  .connect()
+  .then(() => {
+    app.post("/product/addnew", async (req, res) => {
+      const db = client.db("AdminDB")
+      const collections = db.collection("Product")
+      const { item, quantity, price } = req.body
+      try {
+        const product = { item, quantity, price }
+        const insertedProduct = await collections.insertOne(product, { timeStamps: true })
+        return res.status(200).json({ insertedProduct })
+      } catch (err) {
+        return res.status(500).json({ error: err.message })
+      }
+    })
+
+    // app.get("/product", async (req, res) => {
+    //   try {
+    //     const product = await Product.find({})
+    //     return res.status(200).json(product)
+    //   } catch (err) {
+    //     return res.status(500).json({ error: err.message })
+    //   }
+    // })
+
+    app.get("/product", async (req, res) => {
+      try {
+        const db = client.db("AdminDB")
+        const collections = db.collection("Product")
+        let product = await collections.find({}).toArray()
+        return res.status(200).json(product)
+      } catch (err) {
+        return res.status(500).json({ error: err.message })
+      }
+    })
+
+    console.log("Connect to DB!")
+  })
+  .catch((err) => console.log(err))
+
+app.post("/signin", async (req, res) => {
   const { username, password } = req.body
 
   try {
@@ -82,8 +162,16 @@ app.post("/signin", (req, res) => {
 
       //check if password is matched!
       // =======================================
+      //       const isMatch = await bcrypt.compare(password, user.password)
+      //       console.log(isMatch, "isMatch")
+      //       console.log(password, "password", typeof password)
+      //
+      //       console.log(user.password, "user.password", typeof user.password)
+      //
+      //       if (isMatch) {
 
-      if (user.password === password) {
+      let isMatch = await bcrypt.compare(password, user.password)
+      if (isMatch) {
         const firstname = user.firstname
         const lastname = user.lastname
         const age = user.age
@@ -167,6 +255,11 @@ function verifyJwtToken(req, res, next) {
 //ROUTING
 // =============================
 
+//product routing
+
+const tempProduct = []
+
+//user routing
 app.get("/users", verifyJwtToken, (req, res) => {
   // const { token } = req.body
 
